@@ -13,10 +13,9 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <h1></h1>
-          <Route path='/' exact component = {MovieList}/>
-          <Route path='/movie/:id' render={({match})=><InfoPage match={match}/>}/>
-          <Route path='/edit/:id' render={({match})=><Edit match={match}/>}/>
+            <Route path='/' exact component = {MovieList}/>
+            <Route path='/movie/:id' render={({match})=><InfoPage match={match}/>}/>
+            <Route path='/edit/:id' render={({match})=><Edit match={match}/>}/>
         </div>
       </Router>
     );

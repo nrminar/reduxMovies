@@ -2,19 +2,25 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import MovieItem from '../MovieItem/MovieItem';
-
+import InfoItem from '../InfoItem/InfoItem';
+import GenreItem from '../GenreItem/GenreItem';
 class InfoPage extends Component {
     state = {
-        movie: []
+        movies: []
     }
-    componentDidMount() {
-        this.ID()
+    async componentDidMount(){
+        this.ID();
+        this.movieMap();
     }
     ID = () => {
         console.log(this.props.match.params.id)
         this.props.dispatch({ type: 'SET_INFO_MOVIES', payload: this.props.match.params.id })
     }
+    movieMap = () =>{
+        this.setState({movies: this.props.reduxState.infoMovie})
+        console.log('Exit MovieMap')
+    }
+    
     handelClick=()=>{
         this.props.history.push('/');
     }
@@ -25,13 +31,20 @@ class InfoPage extends Component {
     render() {
         return (
             <Router>
-                {this.props.reduxState.infoMovie.map((movie)=>{
+                {this.props.reduxState.infoMovie.map((movie, index)=>{
                 return(
-                <MovieItem movie = {movie}/>
+                    <GenreItem movie = {movie} index = {index}/>
                 )
                 })}
-                <button onClick={this.handelClick}>Back to Movies</button>
-                <button onClick={this.edit}>Edit</button>
+                {this.props.reduxState.infoMovie.map((movie, index)=>{
+                    if(index<1){
+                        return(
+                            <InfoItem movie = {movie}/>
+                        )
+                    }
+                })}  
+                <button onClick = {this.handelClick}>Back to Movies</button> 
+                <button onClick = {this.edit}>Edit</button> 
             </Router>
         );
     }

@@ -62,7 +62,7 @@ const genres = (state = [], action) => {
             return state;
     }
 }
-const infoMovie = (state=[], action)=>{
+const infoMovie = (state= [], action)=>{
     switch(action.type){
       case 'INFO_MOVIES':
         return action.payload

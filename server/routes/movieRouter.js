@@ -33,12 +33,12 @@ router.put('/', (req, res) => {
       });
 });
 router.get('/info/:id', (req, res) => {
-const queryText = 'SELECT * FROM movies WHERE id=$1';
-pool.query(queryText, [req.params.id])
-    .then((result) => { res.send(result.rows); })
-    .catch((err) => {
-    console.log('Error completing SELECT plant query', err);
-    res.sendStatus(500);
-    });
+    const queryText = 'SELECT "movies".*, "genres".name FROM "movies" JOIN "movie-genre" ON "movies".id = "movie-genre".movies_id JOIN "genres" ON "genres".id = "movie-genre".genres_id WHERE "movies".id = $1;';
+    pool.query(queryText, [req.params.id])
+        .then((result) => { res.send(result.rows); })
+        .catch((err) => {
+        console.log('Error completing SELECT plant query', err);
+        res.sendStatus(500);
+        });
 });
 module.exports = router;
