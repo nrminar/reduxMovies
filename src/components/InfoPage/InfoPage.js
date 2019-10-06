@@ -4,6 +4,27 @@ import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import InfoItem from '../InfoItem/InfoItem';
 import GenreItem from '../GenreItem/GenreItem';
+import styled from 'styled-components';
+
+const Button = styled.button`
+  color: #3960A4;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid #3960A4;
+  border-radius: 10px;
+`;
+const EditButton = styled(Button)`
+    color: #309053;
+    border: 2px solid #309053;
+`
+const Movie = styled.div`
+    background: #eee;
+    padding: 30px;
+    border: 4px solid #09253E;
+    margin: 10px;
+    border-radius: 10px;
+`
 class InfoPage extends Component {
     state = {
         movies: []
@@ -30,22 +51,28 @@ class InfoPage extends Component {
 
     render() {
         return (
-            <Router>
-                {this.props.reduxState.infoMovie.map((movie, index)=>{
-                return(
-                    <GenreItem movie = {movie} index = {index}/>
-                )
-                })}
-                {this.props.reduxState.infoMovie.map((movie, index)=>{
-                    if(index<1){
-                        return(
-                            <InfoItem movie = {movie}/>
-                        )
-                    }
-                })}  
-                <button onClick = {this.handelClick}>Back to Movies</button> 
-                <button onClick = {this.edit}>Edit</button> 
-            </Router>
+            <Movie>
+                <Router>
+                    {this.props.reduxState.infoMovie.map((movie, index)=>{
+                    return(
+                        <GenreItem movie = {movie} index = {index}/>
+                    )
+                    })}
+                    {this.props.reduxState.infoMovie.map((movie, index)=>{
+                        if(index<1){
+                            return(
+                                <InfoItem movie = {movie}/>
+                            )
+                        }
+                    })}
+                    <Button
+                        onClick = {this.handelClick}>Back to Movies
+                    </Button>
+                    <EditButton
+                        onClick = {this.edit}>Edit
+                    </EditButton>
+                </Router>
+            </Movie>
         );
     }
 }
