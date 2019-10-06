@@ -15,6 +15,15 @@ function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchMovies);
     yield takeEvery('SET_INFO_MOVIES', setMovieInfo);
     yield takeEvery('UPDATE_MOVIE', updateMovie);
+    yield takeEvery('SET_GENRE', setGenre);
+}
+function* setGenre(action){
+  try{
+    const response = yield axios.get('/api/movies/genres/' + action.payload);
+    yield put({type: 'GENRE_MOVIES', payload: response.data})
+  }catch(err){
+    console.log(err);
+  }
 }
 function* setMovieInfo(action) {
     try{
@@ -53,6 +62,14 @@ const movies = (state = [], action) => {
     }
 }
 
+const drawer = (state = false, action) => {
+  switch (action.type) {
+      case 'SET_DRAWER':
+          return state = !state;
+      default:
+          return state;
+  }
+}
 // Used to store the movie genres
 const genres = (state = [], action) => {
     switch (action.type) {
@@ -70,6 +87,14 @@ const infoMovie = (state= [], action)=>{
         return state
     }
   }
+  const genreMovie = (state= [], action)=>{
+    switch(action.type){
+      case 'GENRE_MOVIES':
+        return action.payload
+      default:
+        return state
+    }
+  }
 
 // Create one store that all components can use
 const storeInstance = createStore(
@@ -77,6 +102,8 @@ const storeInstance = createStore(
         movies,
         genres,
         infoMovie,
+        drawer,
+        genreMovie,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

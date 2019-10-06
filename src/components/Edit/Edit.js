@@ -38,6 +38,8 @@ const Textarea = styled.textarea`
     border: none;
     border-radius: 5px;
 `
+//Edit page, gets info of the movie that is in the movieInfo reducer and then has two buttons
+//You can cancel and go back to the infoPage or submit changes
 class Edit extends Component {
     state = {
         movie: {
