@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+//component to render the genres of the movies in the infoMovie reducer
 class InfoItem extends Component {
     render() {
         return (

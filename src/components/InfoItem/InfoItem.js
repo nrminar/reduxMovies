@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+//renders the movies passed to it from the infoPage
 class InfoItem extends Component {
     render() {
         return (

@@ -2,7 +2,7 @@ import React from 'react';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-
+//list styles
 const Toollist = styled.div`
     text-decoration: none;
     color: #243F89;
@@ -10,6 +10,7 @@ const Toollist = styled.div`
     margin: 0;
     list-style: none;
 `
+//link styles
 const Toollinks = styled.div`
     display: flex;
     align-items: center;
@@ -25,6 +26,8 @@ const Toollinks = styled.div`
     height: 100%;
     z-index: 200;
 `
+//sidedrawer that gets rendered when the hamburger is clicked
+//contains links to all the movie genres
 const sideDrawer = () => (
         <Router>
             <Toollinks>

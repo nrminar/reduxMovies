@@ -6,6 +6,7 @@ import InfoItem from '../InfoItem/InfoItem';
 import GenreItem from '../GenreItem/GenreItem';
 import styled from 'styled-components';
 
+//button styles
 const Button = styled.button`
   color: #3960A4;
   font-size: 1em;
@@ -14,10 +15,12 @@ const Button = styled.button`
   border: 2px solid #3960A4;
   border-radius: 10px;
 `;
+//edit button styles: button with color changes
 const EditButton = styled(Button)`
     color: #309053;
     border: 2px solid #309053;
 `
+//movie styles
 const Movie = styled.div`
     background: #eee;
     padding: 30px;
@@ -25,6 +28,8 @@ const Movie = styled.div`
     margin: 10px;
     border-radius: 10px;
 `
+//renders the movie that was clicked on, store in the infoMovie reducer
+//two bnuttons that allow you to go back to the list of movies or to edit this movies info
 class InfoPage extends Component {
     state = {
         movies: []

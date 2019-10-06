@@ -11,7 +11,8 @@ const Movie = styled.div`
     margin: 10px;
     border-radius: 10px;
 `
-
+//called on the movie list page and on the genrePage
+//renders the moves that are passed to it and attaches an onclick
 class MovieItem extends Component {
     moreInfo = (id)=>{
         this.props.history.push(`/movie/${id}`)
