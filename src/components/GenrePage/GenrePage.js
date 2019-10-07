@@ -14,6 +14,16 @@ class GenrePage extends Component {
     componentDidMount(){
         this.ID();
     }
+
+    componentDidUpdate(previousState){
+        this.update(previousState);
+    }
+
+    update = (previousState) =>{
+        if(this.props.reduxState.genreMovie !== previousState.reduxState.genreMovie){
+            this.ID();
+        }
+    }
     ID = () => {
         this.props.dispatch({ type: 'SET_GENRE', payload: this.props.match.params.id })
     }
