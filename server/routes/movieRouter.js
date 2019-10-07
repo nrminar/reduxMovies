@@ -2,7 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 
 const router = express.Router();
-
+//get all the movies
 router.get('/', (req, res) => {
     const queryText = 'SELECT * FROM movies';
     pool.query(queryText)
@@ -12,6 +12,7 @@ router.get('/', (req, res) => {
         res.sendStatus(500);
       });
 });
+//edit movie router
 router.put('/', (req, res) => {
     const updatedMovie = req.body;
   
@@ -32,6 +33,7 @@ router.put('/', (req, res) => {
         res.sendStatus(500);
       });
 });
+//get a movie with genres
 router.get('/info/:id', (req, res) => {
     const queryText = 'SELECT "movies".*, "genres".name FROM "movies" JOIN "movie-genre" ON "movies".id = "movie-genre".movies_id JOIN "genres" ON "genres".id = "movie-genre".genres_id WHERE "movies".id = $1;';
     pool.query(queryText, [req.params.id])
@@ -41,6 +43,7 @@ router.get('/info/:id', (req, res) => {
         res.sendStatus(500);
         });
 });
+//get all movies with a specific genre
 router.get('/genres/:id', (req, res) => {
     const queryText = `SELECT "movies".* FROM "movies" JOIN "movie-genre" ON "movies".id = "movie-genre".movies_id JOIN "genres" ON "genres".id = "movie-genre".genres_id WHERE "genres".name = $1;`;
     pool.query(queryText, [req.params.id])

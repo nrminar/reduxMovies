@@ -17,6 +17,7 @@ function* rootSaga() {
     yield takeEvery('UPDATE_MOVIE', updateMovie);
     yield takeEvery('SET_GENRE', setGenre);
 }
+//makes the axios call to get all the movies related to a specific genre
 function* setGenre(action){
   try{
     const response = yield axios.get('/api/movies/genres/' + action.payload);
@@ -25,6 +26,7 @@ function* setGenre(action){
     console.log(err);
   }
 }
+//makes the axios call to get a movie by id
 function* setMovieInfo(action) {
     try{
         const response = yield axios.get('/api/movies/info/'+ action.payload);
@@ -33,6 +35,7 @@ function* setMovieInfo(action) {
         console.log(err);
       }
 }
+//makes the axios call to update a movie
 function* updateMovie(action){
     try {
       yield axios.put('/api/movies', action.payload);
@@ -40,7 +43,8 @@ function* updateMovie(action){
     } catch (err){
       console.log('PUT ERROR:',err);
     }
-  }
+}
+//makes the axios call to get the movies
 function* fetchMovies(){
     try{
       const response = yield axios.get('/api/movies');
@@ -61,7 +65,7 @@ const movies = (state = [], action) => {
             return state;
     }
 }
-
+//reducer used to toggle the navbar sideDrawer
 const drawer = (state = false, action) => {
   switch (action.type) {
       case 'SET_DRAWER':
@@ -79,6 +83,7 @@ const genres = (state = [], action) => {
             return state;
     }
 }
+//used to store a movie of a specific id
 const infoMovie = (state= [], action)=>{
     switch(action.type){
       case 'INFO_MOVIES':
@@ -87,6 +92,7 @@ const infoMovie = (state= [], action)=>{
         return state
     }
   }
+  //used to store movies of a specific genre
   const genreMovie = (state= [], action)=>{
     switch(action.type){
       case 'GENRE_MOVIES':
