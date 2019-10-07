@@ -22,7 +22,5 @@ You can navigate the site using the nav bar. There is a home button as well as a
 
 When you click on a genre you will be navigated to a page with only that genre of movies. 
 
-I ran into an issue where when you try to navigate to another genre after you already navigated to one, the movie items will not get updated until you refresh the page. I tried a few things to fix this but unfortunately ran out of time.
-
 Have fun!
 
